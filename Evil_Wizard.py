@@ -114,11 +114,12 @@ class Character:
 
     
     def display_stats(self):
-        print(f"{self.name}'s Stats - Health: {self.health}/{self.max_health}, Attack Power: {self.attack_power}")
+        print(f"{self.name}'s Stats - Health: {self.health}/{self.max_health}, Attack Power Range: {self.attack_min} - {self.attack_max}")
         if self.temp_attack_penalty > 0:
             print(f"  Attack penalty: {self.temp_attack_penalty}")
         if self.temp_attack_bonus > 0:
             print(f"  Attack bonus: {self.temp_attack_bonus}")
+        
     
     def heal(self, amount=20):
         old_health = self.health
@@ -234,10 +235,10 @@ class EvilWizard(Character):
         
 def create_character():
     print("Choose your character class:")
-    print("1. Warrior")
-    print("2. Mage")
-    print("3. Archer") 
-    print("4. Paladin")  
+    print("1. Warrior - An aggressive character skilled in fighting")
+    print("2. Mage - A defensive character who uses the opponents attacks against them")
+    print("3. Archer - A sly character who requires some luck and skill") 
+    print("4. Paladin - A tanky character who's power overwhelms them")  
 
     class_choice = input("Enter the number of your class choice: ")
     name = input("Enter your character's name: ")
@@ -321,6 +322,7 @@ def battle(player, wizard):
             player.heal()
         elif choice == '4':
             player.display_stats()
+            continue  # Don't consume a turn for viewing stats
         else:
             print("Invalid choice. Try again.")
 
